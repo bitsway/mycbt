@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ARTICLE</title>
+    <link rel="stylesheet" href="static/c.min.css" />
+    <link rel="stylesheet" href="static/jquery.mobile-1.4.0.min.css" /> 
+   
+    <script src="static/jquery-1.10.2.min.js">   </script>
+    <script src="static/jquery.mobile-1.4.0.min.js">   </script>		
+    
+	<script src="static/article.js">   </script>
+	
+    <script>
+    	function syncPage(){
+			$(".errorChk").text("");
+			$.mobile.navigate("#pagesync")
+			}	
+    </script>
+	       
+    <style>	
+        .reqField{ color:#FF0000;}
+        .errorChk{ color:#FF0000; text-shadow:none;}
+		.errorMsg{ color:#FF0000; text-shadow:none;}
+    	.auto_break{
+			word-wrap:break-word!important;
+			white-space:normal!important;
+		}
+		
+		.tbl_bro_color{border:1px solid #B8DCDC;}
+		
+		.syncbg{
+			background-image : url("b.jpg");
+		}
+		.bgSet{
+			background-image : url("img3.jpg");
+		}
+		.bgSet2{
+			padding-top:10px !important;
+			}
+		.info_form{
+			background-color:#ffffff;
+			border-radius:5px;
+			padding:36px 0;
+			
+		}
+		.medical_heading{
+			color :#ffffff;
+			font-size:23px;
+			font-weight:bold;
+			background-color:#047AC0;
+			border-radius:5px;
+			padding:1px;
+			margin:5px 0;
+			
+		}
+		.customBorder{
+			border:1px solid #125c68 !important;
+		}
+		.footer_img{
+			background-color:#ffffff !important;
+			border-color:#ffffff !important;
+			
+			}
+		.footer_image_display{
+			width:100% !important; 
+			height:50px !important;
+			}
+		.footer_image_displaya{
+			padding:0px !important;
+			border-radius:0px !important; 
+			background-color:#ffffff !important;
+			}
+		<!-- style="width:100%; height:50px; background-color:#ffffff !important;" -->
+    </style>	
+</head>
+
+<body >
+
+
+<!-- MAIN MENU ----------------------------------------------------------------------------- -->
+<div data-theme="c" data-role="page" id="homePage" style="overflow:scroll;" class="bgSet">
+    <div data-theme="c" data-role="header" data-position="fixed" >
+        <a data-role="button" href="#leftpanel" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets" ><img src="menu.png" /></a>
+        
+        <a data-role="button" onClick="exit();" ><img src="exit.png" /></a>
+      <h3>ARTICLE</h3>
+    </div>
+    
+    <div data-role="content" align="center" style="height:90%" >
+    <div class="error" style="float:left; color:#F00;"></div>
+    
+    
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><input id="searchValue" name="searchValue" data-type="search" style="height:40px;" autocomplete="off" placeholder="Search Keyword"></td>
+        <td width="5"></td>
+        <td width="100"><input type="button" name="btnSearch" id="btnSearch" class="ui-btn" value="Search" onclick="searchData()" /></td>
+      </tr>
+    </table>
+	  <!-- <div id="noticeDiv">
+       	<p id="noticeP"></p>
+       </div> -->
+
+       <div id="articleCatDiv"></div>
+       
+      <!-- <img width="100%" src="http://127.0.0.1:8000/article_viewer/static/images/pic/bgimg.jpg" /> -->
+       
+    </div>
+    <div data-role="footer" class="footer_img" data-position="fixed">
+    <!--
+		<img src="ForwebPage.jpg" alt="Footer Banner" style="width:100%;"/>
+        -->
+		<img src="https://dl.dropboxusercontent.com/u/557962/skfcs/image/ForwebPage.jpg" alt="Footer Banner" style="width:100%;"/>
+        
+	</div><!-- /footer -->
+    
+    <!--<div data-theme="c" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" ></div>--><!------m-Reporting 20161110 -->
+    
+	
+	
+	<!---- Request information area is here -->
+    <div data-role="panel" id="leftpanel" class="syncbg" data-position="left" data-display="overlay" data-theme="c">
+        <div align="center" class="medical_heading">
+			<p>CBT <br> Training Content</p>
+		</div>
+		<div class="info_form">
+			
+				<table>
+					<tr>
+						<th colspan="2">Request for Information</th>
+					</tr>
+                    <tr>
+						<td>Name</td>
+						<td>
+                        	<input type="text" id="name" placeholder="" class="customBorder"/>
+                            <input name="ach_lat" id="ach_lat" value=""  type="hidden"/>
+        					<input name="ach_long" id="ach_long" value=""  type="hidden"/>
+                        </td>
+					</tr>
+					<tr>
+						<td>Email</td>
+						<td><input type="text" id="email" placeholder="" class="customBorder"/></td>
+					</tr>
+					<tr>
+						<td>Mobile</td>
+						<td><input type="number" id="mobile" placeholder="" class="customBorder"/></td>
+					</tr>
+					<tr>
+						<td>Remark</td>
+						<td><textarea id="remark" placeholder="" class="customBorder"></textarea></td>
+					</tr>
+					
+					<tr>
+						<td colspan="2"><span class="errorReq" style="color:#000000; font-weight:bold"></span></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input type="submit" value="Submit" onClick="myRequestForm()"></td>
+					</tr>
+				</table>
+			
+		</div>
+        <div align="center"></div>
+    </div>
+</div>
+
+<!----------------------ARTICLE page0------------------------------------------------- -->
+<div data-role="page" data-theme="c" id="first_page" style="overflow:scroll;" class="bgSet">
+    <div data-theme="c" data-role="header" data-position="fixed" >
+        <a data-role="button" onClick="menuClick();" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="menu.png" /></a>
+        <a data-role="button" onclick="backClick();" data-rel="back" class="ui-btn-right" data-transition="slide"><img src="back.png" /></a>
+        <h3>ARTICLE</h3>
+    </div>
+     
+    <div data-role="content" >  
+        <div id="showCategory" style="font-weight:bold; color:#ffffff"></div>
+        
+        <div id="articleSubCatDiv"></div>
+                             
+        <div class="errorChk"></div>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    </div>
+</div>
+
+
+
+
+<div data-role="page" data-theme="c" id="second_page" style="overflow:scroll;" class="bgSet bgSet2">
+    <div data-theme="c" data-role="header" data-position="fixed" >
+        <a data-role="button" onClick="menuClick();" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="menu.png" /></a>
+        <a data-role="button" onclick="backClick();" data-rel="back" class="ui-btn-right" data-transition="slide"><img src="back.png" /></a>
+        <h3>ARTICLE</h3>
+    </div>
+     
+    <div data-role="content" >  
+        <div id="showSubCategory" style="font-weight:bold; color:#ffffff"></div>
+        <br />
+        <div id="articleNameDiv" style="color:#ffffff"></div>              
+        <div class="errorChk"></div>
+           <!-- <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>  -->
+    </div>
+    <div data-role="panel" id="leftpanel1" class="syncbg" data-position="left" data-display="overlay" data-theme="c">
+        <div align="center" class="medical_heading">
+			<p>Medical Case Studies </p>
+		</div>
+		<div class="info_form">
+			
+				<table>
+					<tr>
+						<th colspan="2">Request for Information</th>
+					</tr>
+                    <tr>
+						<td>Name</td>
+						<td>
+                        	<input type="text" id="name1" placeholder="" class="customBorder"/>
+                            <input name="ach_lat" id="ach_lat" value=""  type="hidden"/>
+        					<input name="ach_long" id="ach_long" value=""  type="hidden"/>
+                        </td>
+					</tr>
+					<tr>
+						<td>Email</td>
+						<td><input type="text" id="email1" placeholder="" class="customBorder"/></td>
+					</tr>
+					<tr>
+						<td>Mobile</td>
+						<td><input type="number" id="mobile1" placeholder="" class="customBorder"/></td>
+					</tr>
+					<tr>
+						<td>Remark</td>
+						<td><textarea id="remark1" placeholder="" class="customBorder"></textarea></td>
+					</tr>
+					
+					<tr>
+						<td colspan="2"><span class="errorReq" style="color:#000000; font-weight:bold"></span></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input type="submit" value="Submit" onClick="myRequestForm1()"></td>
+					</tr>
+				</table>
+			
+		</div>
+    </div>
+    <!--
+    <div data-theme="c" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" id="footerImage">
+    </div>  -->
+</div>
+
+
+
+<div data-role="page" data-theme="c" id="third_page" style="overflow:scroll;">
+    <div data-theme="c" data-role="header" data-position="fixed" >
+        <a data-role="button" onClick="menuClick();" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="menu.png" /></a>
+        <a data-role="button" onclick="backClick();" data-rel="back" class="ui-btn-right" data-transition="slide"><img src="back.png" /></a>
+        <h3>ARTICLE</h3>
+    </div>
+    <div id="showName" style="font-weight:bold;"></div>
+    
+     <div id="articlePageDiv"></div>
+    <!--<div data-role="content" >  -->
+                             
+      <!--<div id="paging"></div>-->
+      
+                             
+        <div class="errorChk"></div>
+            <!--<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/> -->
+     <div data-theme="c" data-role="footer" data-position="fixed" style="font-size:12px;background-color:#CCC;" align="center" id="footerImage"></div>       
+    <!--</div>-->
+    
+</div>
+
+
+
+<!--<div data-role="page" data-theme="c" id="inPhoto" >
+    <div data-theme="c" data-role="header" data-position="fixed" >
+    <a data-role="button" onClick="menuClick();" data-icon="bullets" data-iconpos="left" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets " ><img src="menu.png" /></a>
+        <a data-role="button" onclick="backClick();" data-rel="back" class="ui-btn-right" data-transition="slide"><img src="back.png" /></a>
+        <h3>ARTICLE</h3>
+  </div>
+    <div data-role="content">       
+        <a data-role="button" id="btn_1_take_pic_pmt" onClick="getAchivementImagePmt();" class="ui-btn" >Take Picture</a>       
+        <img src="" width="128" height="128" alt="Image1" id="myImagePmtA" />        
+        <input name="achPhoto1" id="achPhoto1" value=""  type="hidden">
+        
+        <!--<a data-role="button" id="btn_2_take_pic_pmt" onClick="getAchivementImage2();" class="ui-btn" >Take Picture 2</a>       
+        <img src="" width="128" height="128" alt="Image2" id="myImagePtaB" />
+        <input name="achPhoto2" id="achPhoto2" value=""  type="hidden">-->
+        
+         <!--<input name="ach_lat" id="ach_lat" value=""  type="hidden">
+        <input name="ach_long" id="ach_long" value=""  type="hidden">
+        <a data-role="button" id="btn_ach_lat_long" onClick="getLocationInfoAch();" class="ui-btn" >Confirm Location</a>
+		<div class="errorChk" style="color:#F00;"></div>
+        <div class="sucChk" style="color:#00CA00;"></div>
+        <br/><br/>
+		<br/>
+        <a data-role="button" id="btn_pmt_submit" onClick="pmtDataSubmit();" class="ui-btn" >Submit</a> 
+		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        
+    </div>
+  </div>
+-->
+
+
+<script type="text/javascript" src="phonegap.js"></script>
+
+
+</body>
+</html>
